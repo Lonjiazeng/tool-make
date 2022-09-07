@@ -33,7 +33,6 @@ vim: configdir ccls
 ccls: configdir cmake
 	@sudo apt-get update -y && sudo apt-get upgrade -y
 	@sudo apt-get install clang -y
-	@sudo apt-get install libclang-10-dev -y
 	@cd configdir
 	@git clone --depth=1 --recursive https://github.com/MaskRay/ccls
 	@cd ccls
