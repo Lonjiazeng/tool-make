@@ -127,18 +127,16 @@ let g:coc_global_extensions = [
 set signcolumn=number
 " <TAB> to select candidate forward or
 " pump completion candidate
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
 " <s-TAB> to select candidate backward
-inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-  let col = col('.')-1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-" <CR> to comfirm selected candidate
+inoremap <silent><expr> <s-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<s-TAB>"
+" <CR> to comfirm selected candidate 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" <ESC> to cancel selected
+inoremap <silent><expr> <ESC> coc#pum#visible() ? coc#pum#cancel() : "\<ESC>"
+
 " only when there's selected complete item
+
 if exists('*complete_info')
   inoremap <silent><expr> <CR> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
