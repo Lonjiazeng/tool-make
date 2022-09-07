@@ -1,13 +1,13 @@
 
-all: build-essential vim zsh oh-myzsh c_cpp
+all:  vim zsh oh-myzsh c_cpp
 
-build-essential: 
+cmake: 
 	@sudo apt-get update -y
 	@sudo apt-get upgrade -y
-	@sudo apt-get install build-essential
-	@echo installed build-essential
+	@sudo apt-get install cmake
+	@echo cmake installed
 
-vim: configdir 
+vim: configdir ccls
 	@cd ./configdir
 	@git clone https://github.com/vim/vim.git
 	@./configure --with-features=huge \
@@ -28,7 +28,20 @@ vim: configdir
 				--enable-fail-if-missing \
 				--prefix=/usr/local
 	@sudo make
+	@echo vim installed
 	
+ccls: configdir cmake
+	@sudo apt-get update -y && sudo apt-get upgrade -y
+	@sudo apt-get install clang -y
+	@sudo apt-get install libclang-10-dev -y
+	@cd configdir
+	@git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+	@cd ccls
+	@cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
+						-DCMAKE_PREFIX_PATH=/usr/lib/llvm-10 \
+						-DLLVM_INCLUDE_DIR=/usr/lib/llvm-10/include \
+						-DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-10/
+
 zsh: 
 	@sudo apt-get update -y
 	@sudo apt-get upgrade -y
@@ -42,7 +55,7 @@ zsh:
 	@git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	@cp ./.p10k.zsh ~/
 	@source .zshrc
-
+	@echo zsh installed
 
 configdir:
 	@cd ~
