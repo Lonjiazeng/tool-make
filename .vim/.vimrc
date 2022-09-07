@@ -19,35 +19,35 @@ endif
 " =======================
 call plug#begin('~/.vim/plugged')
 
-  " enhance editor
-  Plug 'tomtom/tcomment_vim'
+" enhance editor
+Plug 'tomtom/tcomment_vim'
 
-  " terminal
-  Plug 'skywind3000/vim-terminal-help'
+" terminal
+Plug 'skywind3000/vim-terminal-help'
 
-  " file explorer
-  Plug 'preservim/nerdtree'
+" file explorer
+Plug 'preservim/nerdtree'
 
-  " file finder
-  Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+" file finder
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
-  " lsp
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" lsp
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  Plug 'jackguo380/vim-lsp-cxx-highlight'
-  
-  " debug
-  Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
-  Plug 'tomasiser/vim-code-dark'
+" debug
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
 
-  Plug 'vim-airline/vim-airline'
+Plug 'tomasiser/vim-code-dark'
 
-  Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 
-  Plug 'godlygeek/tabular'
+Plug 'morhetz/gruvbox'
 
-  Plug 'preservim/vim-markdown'
+Plug 'godlygeek/tabular'
+
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 " =======================
@@ -130,8 +130,8 @@ set signcolumn=number
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
 " <s-TAB> to select candidate backward
 inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<s-TAB>"
-" <CR> to comfirm selected candidate 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" <SPACE> to comfirm selected candidate 
+inoremap <silent><expr> <SPACE> coc#pum#visible() ? coc#pum#confirm() : "\<SPACE>"
 " <ESC> to cancel selected
 inoremap <silent><expr> <ESC> coc#pum#visible() ? coc#pum#cancel() : "\<ESC>"
 
