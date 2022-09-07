@@ -129,7 +129,7 @@ set signcolumn=number
 " pump completion candidate
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
 " <s-TAB> to select candidate backward
-inoremap <silent><expr> <s-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<s-TAB>"
+inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<s-TAB>"
 " <CR> to comfirm selected candidate 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 " <ESC> to cancel selected
@@ -212,3 +212,10 @@ xmap <Leader>v <Plug>vimspectorBalloonEval
 
 "======== vim-markdown ============
 let g:vim_markdown_folding_style_pythonic = 1
+
+" 设置<C-s>保存文件
+inoremap <silent><C-s> <ESC>:w<CR>a
+nnoremap <silent><C-s> :w<CR>
+
+" 设置退格删除
+set backspace=indent,eol,start
