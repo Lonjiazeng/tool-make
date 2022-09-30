@@ -1,4 +1,4 @@
-set number
+set relativenumber number
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -7,6 +7,7 @@ set ignorecase
 set smartcase
 set notimeout
 set background=dark
+set hidden
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   :exe '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -49,6 +50,8 @@ Plug 'godlygeek/tabular'
 
 Plug 'preservim/vim-markdown'
 
+Plug 'frazrepo/vim-rainbow'
+
 call plug#end()
 " =======================
 " ===   plugins  end  ===
@@ -61,6 +64,7 @@ set t_Co=256
 set t_ut=
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:rainbow_active = 1
 syntax enable
 syntax on
 
@@ -130,8 +134,8 @@ set signcolumn=number
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
 " <s-TAB> to select candidate backward
 inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<s-TAB>"
-" <SPACE> to comfirm selected candidate 
-inoremap <silent><expr> <SPACE> coc#pum#visible() ? coc#pum#confirm() : "\<SPACE>"
+" <SPACE> to comfirm selected candidate coc#pum#confirm
+inoremap <silent><expr> , coc#pum#visible() ? coc#pum#insert() : ","
 " <ESC> to cancel selected
 inoremap <silent><expr> <ESC> coc#pum#visible() ? coc#pum#cancel() : "\<ESC>"
 
@@ -219,3 +223,15 @@ nnoremap <silent><C-s> :w<CR>
 
 " 设置退格删除
 set backspace=indent,eol,start
+
+inoremap <silent><nowait> ( ()<ESC>i
+inoremap <silent><nowait> () ()
+inoremap <silent><nowait> (<CR> ()<ESC>i<CR><ESC>O
+inoremap <silent><nowait> { {}<ESC>i
+inoremap <silent><nowait> {} {}
+inoremap <silent><nowait> {<CR> {}<ESC>i<CR><ESC>O
+inoremap <silent><nowait> [ []<ESC>i
+inoremap <silent><nowait> [] []
+inoremap <silent><nowait> [<CR> []<ESC>i<CR><ESC>O
+nnoremap <silent><nowait> <TAB> :bnext<CR>
+nnoremap <silent><nowait> <S-TAB> :bprevious<CR>
